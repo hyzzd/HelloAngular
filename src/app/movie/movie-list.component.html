@@ -1,0 +1,30 @@
+<h1>List of Movies</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Overview</th>
+            <th>Budget</th>
+            <th>Release Date</th>
+            <th>Average Vote</th>
+            <th>Post</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let movie of movies">
+            <td>{{movie.id}}</td>
+            <td>{{movie.title}}</td>
+            <td>{{movie.overview}}</td>
+            <td>{{movie.budget | currency}}</td>
+            <td>{{movie.releaseDate | date:'shortDate'}}</td>
+            <td>{{movie.averageVote}}</td>
+            <td><img src="{{movie.posterUrl}}" width="50" height="70"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
