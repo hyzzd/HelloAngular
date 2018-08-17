@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule} from '@angular/router';
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { AppComponent } from './app.component';
 import { MovieListComponent } from './movie/movie-list.component';
@@ -15,6 +16,10 @@ import { MyMoviesComponent } from './account/my-movies.component';
 import { CreateMovieComponent } from './admin/create-movie.component';
 import { NonfoundComponent } from './shared/components/nonfound.component';
 import { GenreComponent } from './genre/genre.component';
+
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   declarations: [
@@ -33,6 +38,12 @@ import { GenreComponent } from './genre/genre.component';
     BrowserModule,
     HttpClientModule,
     NgbModule.forRoot(),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['localhost']
+      }
+    }),
     RouterModule.forRoot([
       {path: '', component: AppComponent},
       {path: 'movies', component: MovieListComponent},
